@@ -51,4 +51,3 @@ intervalo que sean cuadrados perfectos y la posicion que ocupan dentro del inter
 9 8
 16 15
 -}
-
