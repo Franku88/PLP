@@ -5,10 +5,16 @@ type Edad = Int
 type Persona = (Nombre, Edad)
 type NumeroTelefono = String
 type DirectorioTelefonico = [(Persona, NumeroTelefono)]
+
+probarTipoNombre:: String -> Nombre
+probarTipoNombre x = x
+
 --(b) Una base de datos de libros (teniendo en cuenta autores y editoriales)
 type Autor = (Persona, Int)
 type Direccion = (Nombre, Int)
 type Editorial = (Nombre, Direccion)
+type Anio = Int
+type Libro = (Nombre, Anio)
 type BDLibros = [(Libro, Autor, Editorial)]
 
 {-(23) Definir funcion tal que, dados tres pares de enteros, debe devolver en un cuarto
