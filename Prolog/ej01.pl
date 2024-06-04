@@ -51,7 +51,8 @@ matrimonio(X,Y):- casado(Y,X).
 
 /* c) Defina e implemente en PROLOG los predicados: */
 % soltero
-soltero(X):- \+matrimonio(X,_).
+soltero(X):- masculino(X),\+matrimonio(X,_).
+soltero(X):- femenino(X),\+matrimonio(X,_).
 % amante
 amante(X,Y):- matrimonio(X,M),progenitor(X,H),progenitor(Y,H),M\=Y,X\=Y.
 amante(X,Y):- matrimonio(Y,M),progenitor(Y,H),progenitor(Y,H),M\=X,X\=Y.
@@ -91,7 +92,11 @@ true.
 ?- soltero(jose): ¿es correcta la respuesta?
 true.
 ?- amante(X,Y). 
-false. (deberia retornar otra cosa?) */
+X = pedro,
+Y = maria ;
+X = maria,
+Y = pedro ;
+false. */
 
 /* e) Realice las siguientes consultas e indique la respuesta:
 Según su definición ¿es Pablo hermano de Luis?
@@ -127,11 +132,39 @@ X = pablo ;
 X = luis ;
 false.
 ¿Quiénes son tíos de Pablo?
-
+?- tio(X,pablo).
+X = rodolfo ;
+X = sandra ;
+false.
 ¿De quién es Luciano bisnieto?
-
+?- bisabuelo(X,luciano). 
+X = norma ;
+X = carlos ;
+false.
 ¿Quiénes son descendientes de Silvia?
-
+?- ancestro(silvia,X). 
+X = carlos ;
+X = andrea ;
+X = cecilia ;
+X = laura ;
+X = luciano ;
+X = ariel ;
+X = gabriel ;
+false.
 ¿Quiénes son solteros?
-
+?- soltero(X).       
+X = ariel ;
+X = luciano ;
+X = luis ;
+X = pablo ;
+X = tomas ;
+X = jose ;
+X = jorge ;
+X = gabriel ;
+X = damian ;
+X = ana ;
+X = sandra ;
+X = silvia.
 */
+
+
