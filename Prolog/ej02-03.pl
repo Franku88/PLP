@@ -51,5 +51,39 @@ mayor_igual(succ(_),0).
 mayor_igual(succ(X),succ(Y)):- mayor_igual(X,Y).
 
 %g) realice el árbol SLD con al menos una consulta para cada predicado 
+%hecho en papel
 
+/*4. ¿Cuáles de los siguientes términos unifican exitosamente?
+point(A,B)  point(1,s(2)) (posible instanciar A y B como 1 y s(2) 
+respectivamente) SI UNIFICAN
+
+pre(A,B)    pre(X,Y,Z) (mismo functor, pero distinta aridad) NO UNIFICAN
+
+6   3+3 (un termino es complejo, el otro no) NO UNIFICAN
+
+esquina(X+Y)    esquina(corrientes+cordoba) (mismo functor, misma aridad, y es 
+posible instanciar X=corrientes, Y=cordoba) SI UNIFICAN
+
+Diana    diana (terminos simples pero diferentes, 
+unifican si Diana se instancia como diana) NO UNIFICAN
+
+‘Diana’     _diana (terminos simples pero diferentes,
+unifican si _diana se instancia como 'Diana') NO UNIFICAN
+
+_   ‘Diana goes south’ (_ es variable (anonima)), 
+instancia a 'Diana goes south') SI UNIFICAN
+
+X+1-Y*2     (X+1)-(Y*2) (por precedencia de operadores, 
+X+1-Y*2 = (X+1)-(Y*2)) SI UNIFICAN
+
+long(X, punto(A,2))     long(Y, punto(2+1, ))) (el segundo termino,
+tiene un parametro faltante en su segundo parametro) NO UNIFICAN
+
+plus(2,2)   4 (una es termino complejo y otra es constante numerica) NO UNIFICAN
+
+admira(X,padre(X))      admira(padre(U),V) (X se instancia como padre(U),
+y V con padre(X)=padre(padre(U))) SI UNIFICAN
+
+p(q(-1,0),P2,P3)    p(P1,q(1,0),q(0,Y)) (con P1 = q(-1,0), P2 = q(1,0)
+y P3 = q(0,Y)) SI UNIFICAN */
 
