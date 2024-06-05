@@ -64,27 +64,15 @@ suegro(X,Y):- matrimonio(Y,W), padre(X,W).
 ?- madre(X,laura).
 X = andrea.
 ?- abuelo(tomas,Y)
-Y = pablo ;
-Y = luciano ;
-Y = ariel.
+Y = pablo ; Y = luciano ; Y = ariel.
 ?- ancestro(X,luciano).
-X = pedro ;
-X = laura ;
-X = silvia ;
-X = jorge ;
-X = tomas ;
-X = daniel ;
-X = andrea ;
-X = norma ;
-X = carlos ;
+X = pedro ; X = laura ; X = silvia ;
+X = jorge ; X = tomas ; X = daniel ;
+X = andrea ; X = norma ; X = carlos ;
 false.
 ?- ancestro(jorge,Y).
-Y = carlos ;
-Y = andrea ;
-Y = cecilia ;
-Y = laura ;
-Y = luciano ;
-Y = ariel ;
+Y = carlos ; Y = andrea ; Y = cecilia ;
+Y = laura ; Y = luciano ; Y = ariel ;
 Y = gabriel ;
 false.
 ?- soltero(luis).
@@ -92,24 +80,23 @@ true.
 ?- soltero(jose): ¿es correcta la respuesta?
 true.
 ?- amante(X,Y). 
-X = pedro,
-Y = maria ;
-X = maria,
-Y = pedro ;
+X = pedro, Y = maria ; 
+X = maria, Y = pedro ;
 false. */
 
 /* e) Realice las siguientes consultas e indique la respuesta:
 Según su definición ¿es Pablo hermano de Luis?
 ?- hermano(pablo,luis).
 false.
+
 Pedro, ¿de quién es padre?
 ?- padre(pedro,X).
-X = pablo ;
-X = luciano ;
-X = ariel.
+X = pablo ; X = luciano ; X = ariel.
+
 ¿Quién es suegro de María?
 ?- suegro(X,maria). 
 X = jose.
+
 ¿Quiénes son hermanos?
 ?- hermano(X,Y). 
 X = ana, Y = luis ;
@@ -125,46 +112,32 @@ X = sandra, Y = rodolfo ;
 X = andrea, Y = cecilia ;
 X = cecilia, Y = andrea ;
 false.
+
 ¿De quién es primo Damián?
 ?- primo(damian,X).
-X = ana ;
-X = pablo ;
-X = luis ;
+X = ana ; X = pablo ; X = luis ;
 false.
+
 ¿Quiénes son tíos de Pablo?
 ?- tio(X,pablo).
-X = rodolfo ;
-X = sandra ;
+X = rodolfo ; X = sandra ;
 false.
+
 ¿De quién es Luciano bisnieto?
 ?- bisabuelo(X,luciano). 
-X = norma ;
-X = carlos ;
+X = norma ; X = carlos ;
 false.
+
 ¿Quiénes son descendientes de Silvia?
 ?- ancestro(silvia,X). 
-X = carlos ;
-X = andrea ;
-X = cecilia ;
-X = laura ;
-X = luciano ;
-X = ariel ;
+X = carlos ; X = andrea ; X = cecilia ;
+X = laura ; X = luciano ; X = ariel ;
 X = gabriel ;
 false.
+
 ¿Quiénes son solteros?
 ?- soltero(X).       
-X = ariel ;
-X = luciano ;
-X = luis ;
-X = pablo ;
-X = tomas ;
-X = jose ;
-X = jorge ;
-X = gabriel ;
-X = damian ;
-X = ana ;
-X = sandra ;
-X = silvia.
-*/
-
-
+X = ariel ; X = luciano ; X = luis ;
+X = pablo ; X = tomas ; X = jose ;
+X = jorge ; X = gabriel ; X = damian ;
+X = ana ; X = sandra ; X = silvia. */
