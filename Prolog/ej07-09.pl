@@ -59,19 +59,13 @@ susTodos(X, Y, [Y|L], [X|R]):- susTodos(X, Y, L, R).
 susTodos(X, Y, [H|L], [H|R]):- susTodos(X, Y, L, R), H \= Y.
 
 %e) cardinalidad (cantidad de elementos no repetidos) Ej. entra [1,2,1,3,4] y sale 4.
-card(L, C):- cardAux(L, [], C). %llamado con ninguno listado
+card(L, C):- cardAux(L, [], C). %llamado con listado vacio
 cardAux([], _, 0). %lista vacia no tiene elementos listados
-%si no puede agregar a la lista de elementos, entonces se encontro en la lista original (0)
-cardAux([X|L], R, C):- agregaNuevo(X, R, 0, R), cardAux(L, R, C).
-%si puede agregar a la lista de elementos, entonces no se encontro en la lista original (1)
-cardAux([X|L], R1, C1):- agregaNuevo(X, R1, 1, R2), cardAux(L, R2, C2), C1 is C2+1.
-agregaNuevo(X, [], 1, [X]). % Agrega si no esta, retorna 1
-agregaNuevo(X, [X|L], 0, [X|L]). % No agrega si esta, retorna 0
-agregaNuevo(X, [H|L], E, [H|R]):- agregaNuevo(X, L, E, R), H \= X. % Si no encontrado, busca en el resto de la lista
-/*DEBERIA HACERLO SOLO CON buscar EN LUGAR DE agregaNuevo*/
-/* buscar(X, [], 0). % retorna 0 si no es encontrado
-buscar(X, [X|L], 1). % retorna 1 si es encontrado
-buscar(X, [H|L], R):- buscar(X, L, R), H \= X. */
+cardAux([X|L], R, C):- not(existe(X, R)), cardAux(L, [X|R], K), C is K+1. % lo agrega y aumenta el contador
+cardAux([X|L], R, C):- existe(X, R), cardAux(L, R, C). % no lo agrega y no aumenta el contador
+
+existe(X, [X|_]).
+existe(X, [H|L]):- existe(X, L), H \= X.
 
 %f) inversión. Ej. entra [1,2,3,4] y sale [4,3,2,1].
 invertir([], []).
@@ -91,11 +85,35 @@ doblar([X|L], [X|[X|D]]):- doblar(L, D).
 
 % 9. Suponga que representamos conjuntos mediante listas. Implementar las siguientes operaciones sobre conjuntos:
 % a) inclusión
+inclusion(L1, L2):- inclusionAux(L1, [], L2).
+inclusionAux([], _, _).
+inclusionAux([H|T], A, L) :- not(existe(H, A)), existe(H, L), inclusionAux(T, [H|A], L).
+inclusionAux([H|T], A, L) :- existe(H, A), inclusionAux(T, A, L).
 
 % b) igualdad
+igualdad(L1, L2):- inclusion(L1, L2), inclusion(L2, L1).
 
 % c) unión
+union(L1, L2, U):- unionAux(L1, L2, [], U).
+
+unionAux([], [], _, []).
+unionAux([], [H|T], A, [H|U]):- not(existe(H, A)), unionAux([], T, [H|A], U).
+unionAux([], [H|T], A, U):- existe(H, A), unionAux([], T, A, U).
+unionAux([H|T], L, A, [H|U]):- not(existe(H, A)), unionAux(T, L, [H|A], U).
+unionAux([H|T], L, A, U):- existe(H, A), unionAux(T, L, A, U).
 
 % d) intersección
+interseccion(L1, L2, I):- interseccionAux(L1, L2, [], I).
+
+interseccionAux([], _, _, []).
+interseccionAux([H|T], L, A, I):- existe(H, A), interseccionAux(T, L, A, I).
+interseccionAux([H|T], L, A, [H|I]):- existe(H, L), interseccionAux(T, L, [H|A], I).
+interseccionAux([H|T], L, A, I):- not(existe(H, L)), interseccionAux(T, L, A, I).
 
 % e) diferencia
+diferencia(L1, L2, D):- diferenciaAux(L1, L2, [], D).
+
+diferenciaAux([], _, _, []).
+diferenciaAux([H|T], L, A, D):- existe(H, A), diferenciaAux(T, L, A, D).
+diferenciaAux([H|T], L, A, D):- existe(H, L), diferenciaAux(T, L, A, D).
+diferenciaAux([H|T], L, A, [H|D]):- not(existe(H, L)), diferenciaAux(T, L, [H|A], D).
